@@ -1,20 +1,18 @@
 #pragma once
-#include <vector>
+#include <Eigen/Dense>
 
 class McCullochPittsUnit
 {
-	std::vector<int> m_X;
+	Eigen::MatrixXi m_X;
 public:
-	McCullochPittsUnit(std::vector<int>& X) : m_X(X) {}
-	int g()
+	McCullochPittsUnit(Eigen::MatrixXi& X) : m_X(X) {}
+	Eigen::VectorXi g()
 	{
-		int sum = 0;
-		for (int x : m_X) sum += x;
-		return sum;
+		return m_X.rowwise().sum();
 	}
-	int f(int threshold)
+	Eigen::VectorXi f(Eigen::VectorXi g, int threshold)
 	{
-		int sum = g();
-		return sum >= threshold ? 1 : 0;
+		auto f = [threshold](int x) { return x >= threshold ? 1 : 0; };
+		return g.unaryExpr(f);
 	}
 };

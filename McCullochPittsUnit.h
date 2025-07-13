@@ -4,7 +4,6 @@
 class McCullochPittsUnit
 {
 	std::vector<int> m_X;
-
 public:
 	McCullochPittsUnit(std::vector<int>& X) : m_X(X) {}
 	int g()

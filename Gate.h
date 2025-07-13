@@ -1,37 +1,43 @@
 #pragma once
-#include <vector>
+#include <Eigen/Dense>
 #include "McCullochPittsUnit.h"
 
 class Gate
 {
-	std::vector<int> m_X;
+	Eigen::MatrixXi m_X;
 public:
-	Gate(std::vector<int>& X) : m_X(X) {}
+	Gate(Eigen::MatrixXi& X) : m_X(X) {}
 
-	int OR()
+	Eigen::VectorXi OR()
 	{
-		int threshold = 1;
 		McCullochPittsUnit unit(m_X);
-		return unit.f(threshold);
+		Eigen::VectorXi g = unit.g();
+		return unit.f(g, 1); // OR gate threshold is 1
 	}
 
-	int AND()
+	Eigen::VectorXi AND()
 	{
-		int threshold = 2;
 		McCullochPittsUnit unit(m_X);
-		return unit.f(threshold);
+		Eigen::VectorXi g = unit.g();
+		return unit.f(g, 2); // AND gate threshold is 2
 	}
 
-	int NOR()
+	Eigen::VectorXi NOR()
 	{
-		int result = OR();
-		return result == 1 ? 0 : 1;
+		McCullochPittsUnit unit(m_X);
+		Eigen::VectorXi g = unit.g();
+		Eigen::VectorXi f = unit.f(g, 1);
+		auto func = [](int x) { return x == 0 ? 1 : 0; };
+		return f.unaryExpr(func); // NOR gate is the negation of OR
 	}
 
-	int NAND()
+	Eigen::VectorXi NAND()
 	{
-		int result = AND();
-		return result == 1 ? 0 : 1;
+		McCullochPittsUnit unit(m_X);
+		Eigen::VectorXi g = unit.g();
+		Eigen::VectorXi f = unit.f(g, 2);
+		auto func = [](int x) { return x == 0 ? 1 : 0; };
+		return f.unaryExpr(func); // NAND gate is the negation of AND
 	}
 };
 

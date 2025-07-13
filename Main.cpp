@@ -1,14 +1,23 @@
 #include <iostream>
 #include <vector>
+#include <Eigen/Dense>
 #include "Gate.h"
 
 int main()
 {
-	std::vector<int> X = { 1, 1 };
-	Gate gate1(X);
+	Eigen::MatrixXi tt(4, 2);
+	tt << 0, 0,
+		0, 1,
+		1, 0,
+		1, 1;
+	
+	Gate gate(tt);
 
-	std::cout << "OR: " << gate1.OR() << std::endl;
-	std::cout << "AND: " << gate1.AND() << std::endl;
-	std::cout << "NOR: " << gate1.NOR() << std::endl;
-	std::cout << "NAND: " << gate1.NAND() << std::endl;
+	std::cout << "Truth Table:\n" << tt << "\n" << std::endl;
+	std::cout << "OR Gate Output:\n" << gate.OR() << "\n" << std::endl;
+	std::cout << "AND Gate Output:\n" << gate.AND() << "\n" << std::endl;
+	std::cout << "NOR Gate Output:\n" << gate.NOR() << "\n" << std::endl;
+	std::cout << "NAND Gate Output:\n" << gate.NAND() << "\n" << std::endl;
+
+	return 0;
 }

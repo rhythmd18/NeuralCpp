@@ -10,6 +10,10 @@ public:
 	{
 		return m_x1 + m_x2;
 	}
-
-
+	
+	int f(int threshold)
+	{
+		int sum = g();
+		return sum >= threshold ? 1 : 0;
+	}
 };

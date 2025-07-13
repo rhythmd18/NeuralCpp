@@ -1,16 +1,18 @@
 #pragma once
+#include <vector>
+
 class McCullochPittsUnit
 {
-	int m_x1, m_x2;
+	std::vector<int> m_X;
 
 public:
-	McCullochPittsUnit(int x1, int x2) : m_x1(x1), m_x2(x2) {}
-
+	McCullochPittsUnit(std::vector<int>& X) : m_X(X) {}
 	int g()
 	{
-		return m_x1 + m_x2;
+		int sum = 0;
+		for (int x : m_X) sum += x;
+		return sum;
 	}
-	
 	int f(int threshold)
 	{
 		int sum = g();

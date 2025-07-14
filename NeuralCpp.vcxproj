@@ -126,11 +126,13 @@
   <ItemGroup>
     <ClInclude Include="Gate.h" />
     <ClInclude Include="McCullochPittsUnit.h" />
+    <ClInclude Include="Perceptron.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Gate.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="McCullochPittsUnit.cpp" />
+    <ClCompile Include="Perceptron.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

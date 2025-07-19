@@ -1,7 +1,6 @@
 #include <iostream>
 #include <Eigen/Dense>
 #include "Perceptron.h"
-#include "Gate.h"
 
 int main()
 {
@@ -25,19 +24,13 @@ int main()
 		1, 0,
 		1, 1;
 
-	Eigen::VectorXd W(2);
-	W << 1, 1; // Sample weights
+	Eigen::VectorXi Y(4);
+	Y << 0, 1, 1, 1;
 
-	Perceptron perceptron(X, W);
+	Perceptron perceptron(X);
+	perceptron.Train(Y, 100);
 
-	Eigen::VectorXd g = perceptron.g();
-	double threshold = 0.5; // Sample threshold
-	Eigen::VectorXd y = perceptron.f(g, threshold);
-
-	std::cout << "Input: \n" << X << "\n" << std::endl;
-	std::cout << "Weights: \n" << W.transpose() << "\n" << std::endl;
-	std::cout << "Activation (g): \n" << g.transpose() << "\n" << std::endl;
-	std::cout << "Output (y): \n" << y.transpose() << "\n" << std::endl;
+	std::cout << "Prediction: \n" << perceptron.Predict() << std::endl;
 
 	return 0;
 }

@@ -1,6 +1,6 @@
 #include <iostream>
 #include <Eigen/Dense>
-#include "Perceptron.h"
+#include "include/Perceptron.h"
 
 int main()
 {

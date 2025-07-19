@@ -15,27 +15,27 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="McCullochPittsUnit.h">
+    <ClInclude Include="include\McCullochPittsUnit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Gate.h">
+    <ClInclude Include="include\Gate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Perceptron.h">
+    <ClInclude Include="include\Perceptron.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="McCullochPittsUnit.cpp">
+    <ClCompile Include="src\McCullochPittsUnit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Gate.cpp">
+    <ClCompile Include="src\Gate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Perceptron.cpp">
+    <ClCompile Include="src\Perceptron.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

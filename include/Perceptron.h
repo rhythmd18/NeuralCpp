@@ -19,10 +19,11 @@ class Perceptron
 	}
 
 public:
-	Perceptron(Eigen::MatrixXd& X) : m_X(X) {}
+    Perceptron() : m_X(), m_W() {}
 
-	void Train(Eigen::VectorXi& Y, int epochs)
+	void Train(Eigen::MatrixXd& X, Eigen::VectorXi& Y, int epochs)
 	{
+		m_X = X;
 		if (m_X.rows() != Y.size())
 		{
 			throw std::invalid_argument("Unequal number of samples in X and Y.");

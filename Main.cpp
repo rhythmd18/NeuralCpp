@@ -11,9 +11,12 @@ int main()
 		1, 1;
 
 	Linear layer(2, 5);
-	Eigen::MatrixXd out = layer(X);
+	Eigen::MatrixXd Z = layer(X);
 
-	std::cout << out << std::endl;
+	Sigmoid g;
+	Eigen::MatrixXd A = g(Z);
+
+	std::cout << A << std::endl;
 
 	std::cin.get();
  	return 0;

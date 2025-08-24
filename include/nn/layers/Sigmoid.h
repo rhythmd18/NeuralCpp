@@ -2,7 +2,7 @@
 #include "Layer.h"
 #include <Eigen/Dense>
 
-class Sigmoid : nn::layers::Layer
+class Sigmoid : public nn::layers::Layer
 {
 	Eigen::MatrixXd m_A;
 

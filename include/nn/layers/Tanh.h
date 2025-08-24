@@ -2,7 +2,7 @@
 #include "Layer.h"
 #include <Eigen/Dense>
 
-class Tanh : nn::layers::Layer
+class Tanh : public nn::layers::Layer
 {
 	Eigen::MatrixXd m_A;
 

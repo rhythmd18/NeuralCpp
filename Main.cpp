@@ -1,6 +1,6 @@
 #include <iostream>
 #include <Eigen/Dense>
-#include "include/nn/layers/Linear.h"
+#include "include/nn/layers/Layers.h"
 
 int main()
 {

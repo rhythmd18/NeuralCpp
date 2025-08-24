@@ -140,17 +140,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\Activations.h" />
     <ClInclude Include="include\Gate.h" />
+    <ClInclude Include="include\nn\layers\Layer.h" />
     <ClInclude Include="include\McCullochPittsUnit.h" />
     <ClInclude Include="include\Perceptron.h" />
-    <ClInclude Include="include\MLP.h" />
-    <ClInclude Include="include\Layers.h" />
+    <ClInclude Include="include\nn\layers\Linear.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Activations.cpp" />
-    <ClCompile Include="src\Layers.cpp" />
-    <ClCompile Include="src\MLP.cpp" />
     <ClCompile Include="src\Gate.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="src\McCullochPittsUnit.cpp" />

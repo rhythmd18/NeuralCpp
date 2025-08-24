@@ -1,26 +1,20 @@
 #include <iostream>
-//#include <cmath>
 #include <Eigen/Dense>
-#include "include/Perceptron.h"
-#include "include/Layers.h"
+#include "include/nn/layers/Linear.h"
 
 int main()
 {
 	Eigen::MatrixXd X(4, 2);
-    X << -1, -1, 
-        -1, 1,
-        1, -1,
-        1, 1;
+	X << 0, 0,
+		0, 1,
+		1, 0,
+		1, 1;
 
-    std::cout << "Input: \n" << X << std::endl;
+	Linear layer(2, 5);
+	Eigen::MatrixXd out = layer(X);
 
-    Layer layer1(X, 4, true, "relu");
-    Eigen::MatrixXd out1 = layer1.forward();
+	std::cout << out << std::endl;
 
-    Layer layer2(out1, 1, true, "sigmoid");
-    Eigen::MatrixXd out = layer2.forward();
-
-    std::cout << "\nOutput: \n" << out << std::endl;
-
+	std::cin.get();
  	return 0;
 }

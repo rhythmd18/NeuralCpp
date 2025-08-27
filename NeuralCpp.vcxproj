@@ -158,6 +158,13 @@
     <ClCompile Include="src\Gate.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="src\McCullochPittsUnit.cpp" />
+    <ClCompile Include="src\nn\criteria\BinaryCrossEntropyLoss.cpp" />
+    <ClCompile Include="src\nn\layers\Linear.cpp" />
+    <ClCompile Include="src\nn\layers\ReLU.cpp" />
+    <ClCompile Include="src\nn\layers\Sigmoid.cpp" />
+    <ClCompile Include="src\nn\layers\Softmax.cpp" />
+    <ClCompile Include="src\nn\layers\Tanh.cpp" />
+    <ClCompile Include="src\nn\Sequential.cpp" />
     <ClCompile Include="src\Perceptron.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

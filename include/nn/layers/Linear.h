@@ -26,7 +26,6 @@ public:
 
 	Eigen::MatrixXd operator()(const Eigen::MatrixXd& X_) override
 	{
-		//std::cout << "X_.cols() = " << X_.cols() << ", W.rows() = " << W.rows() << std::endl;
 		assert(X_.cols() == W.rows() && "X and W cannot be multiplied");
 		X = X_;
 		Z = (X * W).rowwise() + b;

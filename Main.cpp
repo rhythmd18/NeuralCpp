@@ -1,36 +1,39 @@
 #include <iostream>
 #include <Eigen/Dense>
-#include "include/Perceptron.h"
+#include "include/nn/layers/Layers.h"
+#include "include/nn/Sequential.h"
+#include "include/nn/criteria/BinaryCrossEntropyLoss.h"
 
 int main()
 {
-	/*Eigen::MatrixXi tt(4, 2);
-	tt << 0, 0,
-		0, 1,
-		1, 0,
-		1, 1;
-	
-	Gate gate(tt);
-
-	std::cout << "Truth Table:\n" << tt << "\n" << std::endl;
-	std::cout << "OR Gate Output:\n" << gate.OR() << "\n" << std::endl;
-	std::cout << "AND Gate Output:\n" << gate.AND() << "\n" << std::endl;
-	std::cout << "NOR Gate Output:\n" << gate.NOR() << "\n" << std::endl;
-	std::cout << "NAND Gate Output:\n" << gate.NAND() << "\n" << std::endl;*/
-
 	Eigen::MatrixXd X(4, 2);
 	X << 0, 0,
 		0, 1,
 		1, 0,
 		1, 1;
 
-	Eigen::VectorXi Y(4);
-	Y << 0, 1, 1, 1;
+	Eigen::MatrixXd y(4, 1);
+	y << 0, 1, 1, 0;
 
-	Perceptron perceptron(X);
-	perceptron.Train(Y, 100);
+	Sequential model(
+		Linear(2, 4),
+		ReLU(),
+		Linear(4, 4),
+		ReLU(),
+		Linear(4, 1),
+		Sigmoid()
+	);
 
-	std::cout << "Prediction: \n" << perceptron.Predict() << std::endl;
+	Eigen::MatrixXd out = model(X);
 
-	return 0;
+	BinaryCrossEntropyLoss loss_fn;
+	double loss = loss_fn(y, out);
+
+	std::cout << "Output:\n" << out << std::endl;
+	std::cout << "Loss: " << loss << std::endl;
+
+	model.backward(loss_fn);
+
+	std::cin.get();
+ 	return 0;
 }

@@ -141,8 +141,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\Gate.h" />
+    <ClInclude Include="include\nn\criteria\BinaryCrossEntropyLoss.h" />
+    <ClInclude Include="include\nn\criteria\Criterion.h" />
+    <ClInclude Include="include\nn\layers\Layer.h" />
     <ClInclude Include="include\McCullochPittsUnit.h" />
+    <ClInclude Include="include\nn\layers\Layers.h" />
+    <ClInclude Include="include\nn\layers\ReLU.h" />
+    <ClInclude Include="include\nn\layers\Sigmoid.h" />
+    <ClInclude Include="include\nn\layers\Softmax.h" />
+    <ClInclude Include="include\nn\layers\Tanh.h" />
+    <ClInclude Include="include\nn\Sequential.h" />
     <ClInclude Include="include\Perceptron.h" />
+    <ClInclude Include="include\nn\layers\Linear.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Gate.cpp" />

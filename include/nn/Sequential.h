@@ -7,9 +7,8 @@
 
 class Sequential
 {
-public:
 	std::vector<std::shared_ptr<Layer>> layers;
-
+public:
 	template<typename... Layers>
 	Sequential(Layers... ls)
 	{
@@ -17,22 +16,6 @@ public:
 		(void)dummy;
 	}
 
-	Eigen::MatrixXd operator()(const Eigen::MatrixXd& X)
-	{
-		Eigen::MatrixXd out = X;
-		for (auto& layer : layers)
-		{
-			out = (*layer)(out);
-		}
-		return out;
-	}
-
-	void backward(Criterion& objective)
-	{
-		Eigen::MatrixXd dout = objective._backward();
-		for (auto it = layers.rbegin(); it != layers.rend(); ++it)
-		{
-			dout = (*it)->_backward(dout);
-		}
-	}
+	Eigen::MatrixXd operator()(const Eigen::MatrixXd& X);
+	void backward(Criterion& objective);
 };

@@ -1,15 +1,21 @@
 #pragma once
+#include <cmath>
 #include "Layer.h"
 #include <Eigen/Dense>
 
-class Tanh : public nn::layers::Layer
+class Tanh : public Layer
 {
-	Eigen::MatrixXd m_A;
+	Eigen::MatrixXd A;
 
 public:
-	Eigen::MatrixXd forward(const Eigen::MatrixXd& X)
+	Eigen::MatrixXd operator()(const Eigen::MatrixXd& X) override
 	{
-		m_A = X.array().tanh().matrix();
-		return m_A;
+		A = X.array().tanh().matrix();
+		return A;
+	}
+
+	Eigen::MatrixXd _backward(const Eigen::MatrixXd& dA) override
+	{
+		return dA.array() * (1.0 - dA.array().pow(2));
 	}
 };

@@ -1,19 +1,10 @@
 #pragma once
 #include <Eigen/Dense>
 
-namespace nn
+class Layer
 {
-	namespace layers
-	{
-		class Layer
-		{
-		public:
-			virtual ~Layer() = default;
-			virtual Eigen::MatrixXd forward(const Eigen::MatrixXd& X) = 0;
-			Eigen::MatrixXd operator()(const Eigen::MatrixXd& X)
-			{
-				return forward(X);
-			}
-		};
-	}
-}
+public:
+	virtual ~Layer() = default;
+	virtual Eigen::MatrixXd operator()(const Eigen::MatrixXd& X) = 0;
+	virtual Eigen::MatrixXd _backward(const Eigen::MatrixXd& dA) = 0;
+};

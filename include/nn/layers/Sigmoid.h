@@ -2,14 +2,19 @@
 #include "Layer.h"
 #include <Eigen/Dense>
 
-class Sigmoid : public nn::layers::Layer
+class Sigmoid : public Layer
 {
-	Eigen::MatrixXd m_A;
+	Eigen::MatrixXd A;
 
 public:
-	Eigen::MatrixXd forward(const Eigen::MatrixXd& X)
+	Eigen::MatrixXd operator()(const Eigen::MatrixXd& X) override
 	{
-		m_A = 1.0 / (1.0 + X.array().exp());
-		return m_A;
+		A = 1.0 / (1.0 + (-X.array()).exp());
+		return A;
+	}
+
+	Eigen::MatrixXd _backward(const Eigen::MatrixXd& dA) override
+	{
+		return dA.array() * A.array() * (1.0 - A.array());
 	}
 };

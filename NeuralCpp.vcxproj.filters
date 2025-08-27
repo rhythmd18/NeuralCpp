@@ -45,6 +45,15 @@
     <ClInclude Include="include\nn\layers\Layers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\nn\Sequential.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\nn\criteria\Criterion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\nn\criteria\BinaryCrossEntropyLoss.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\McCullochPittsUnit.cpp">

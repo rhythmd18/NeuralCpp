@@ -1,17 +1,15 @@
 #pragma once
+#include <iostream>
 #include <Eigen/Dense>
 #include <random>
 #include <cassert>
 #include "Layer.h"
 
-class Linear : public nn::layers::Layer
+class Linear : public Layer
 {
-	Eigen::MatrixXd W;
-	Eigen::VectorXd b;
-	Eigen::MatrixXd dW;
-	Eigen::VectorXd db;
-	Eigen::MatrixXd m_X;
-	Eigen::MatrixXd m_Z;
+	Eigen::MatrixXd W, X, Z, dW;
+	Eigen::RowVectorXd b, db;
+
 
 public:
 	Linear(int input_dims, int output_dims)
@@ -23,15 +21,23 @@ public:
 			input_dims,
 			output_dims,
 			[&]() { return dist(gen) * std::sqrt(1.0 / input_dims); });
-		b = Eigen::VectorXd::Zero(output_dims);
+		b = Eigen::RowVectorXd::Zero(output_dims);
 	}
 
-	Eigen::MatrixXd forward(const Eigen::MatrixXd& X)
+	Eigen::MatrixXd operator()(const Eigen::MatrixXd& X_) override
 	{
-		assert(X.cols() == W.rows() && "X and W cannot be multiplied");
-		m_X = X;
-		m_Z = (X * W).rowwise() + b.transpose();
-		return m_Z;
+		//std::cout << "X_.cols() = " << X_.cols() << ", W.rows() = " << W.rows() << std::endl;
+		assert(X_.cols() == W.rows() && "X and W cannot be multiplied");
+		X = X_;
+		Z = (X * W).rowwise() + b;
+		return Z;
+	}
+
+	Eigen::MatrixXd _backward(const Eigen::MatrixXd& dZ) override
+	{
+		dW = X.transpose() * dZ / X.rows();
+		db = dZ.colwise().sum() / X.rows();
+		return dZ * W.transpose();
 	}
 };
 

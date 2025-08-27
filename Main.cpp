@@ -1,6 +1,8 @@
 #include <iostream>
 #include <Eigen/Dense>
 #include "include/nn/layers/Layers.h"
+#include "include/nn/Sequential.h"
+#include "include/nn/criteria/BinaryCrossEntropyLoss.h"
 
 int main()
 {
@@ -10,13 +12,27 @@ int main()
 		1, 0,
 		1, 1;
 
-	Linear layer(2, 5);
-	Eigen::MatrixXd Z = layer(X);
+	Eigen::MatrixXd y(4, 1);
+	y << 0, 1, 1, 0;
 
-	Sigmoid g;
-	Eigen::MatrixXd A = g(Z);
+	Sequential model(
+		Linear(2, 4),
+		ReLU(),
+		Linear(4, 4),
+		ReLU(),
+		Linear(4, 1),
+		Sigmoid()
+	);
 
-	std::cout << A << std::endl;
+	Eigen::MatrixXd out = model(X);
+
+	BinaryCrossEntropyLoss loss_fn;
+	double loss = loss_fn(y, out);
+
+	std::cout << "Output:\n" << out << std::endl;
+	std::cout << "Loss: " << loss << std::endl;
+
+	model.backward(loss_fn);
 
 	std::cin.get();
  	return 0;

@@ -1,17 +1,17 @@
-# NeuralCpp
+﻿# NeuralCpp
 
-A minimal neural network library in modern C++14 built on top of Eigen. It provides simple building blocks (layers, loss functions, optimizers) and a Sequential container to assemble and train feed?forward models.
+A minimal neural network library in modern C++14 built on top of Eigen. It provides simple building blocks (layers, loss functions, optimizers) and a Sequential container to assemble and train feed‑forward models.
 
 ## Features
 - Sequential model container
-- Layers: Linear (fully?connected), ReLU, Sigmoid, Tanh, Softmax
+- Layers: Linear (fully‑connected), ReLU, Sigmoid, Tanh, Softmax
 - Loss: Binary Cross Entropy (BCE)
 - Optimizer: SGD with momentum
 - Uses Eigen (MatrixXd) as the tensor backend
 
 ## Requirements
-- C++14?compatible compiler (GCC/Clang/MSVC)
-- Eigen 3.3+ (header?only)
+- C++14‑compatible compiler (GCC/Clang/MSVC)
+- Eigen 3.3+ (header‑only)
 
 Install Eigen:
 - Ubuntu/Debian: `sudo apt-get install libeigen3-dev` (headers in `/usr/include/eigen3`)
@@ -28,73 +28,8 @@ Key headers and sources used by the example:
 - Headers: `include/nn/Sequential.h`, `include/nn/layers/Layers.h`, `include/nn/criteria/BinaryCrossEntropyLoss.h`, `include/nn/optimizers/SGD.h`
 - Sources: `src/nn/Sequential.cpp`, `src/nn/layers/Linear.cpp`, `src/nn/layers/ReLU.cpp`, `src/nn/layers/Sigmoid.cpp`, `src/nn/layers/Tanh.cpp`, `src/nn/layers/Softmax.cpp`, `src/nn/criteria/BinaryCrossEntropyLoss.cpp`, `src/nn/optimizers/Optimizer.cpp`, `src/nn/optimizers/SGD.cpp`
 
-## Build
-This repository is build?system agnostic. You can compile it with your preferred toolchain. Below are a few options.
-
-### Option A: g++/clang++ (Linux/macOS)
-```bash
-# Adjust EIGEN_INC if needed (e.g. /usr/include/eigen3)
-EIGEN_INC=/usr/include/eigen3
-CXXFLAGS="-std=c++14 -O2 -Iinclude -I$EIGEN_INC"
-
-c++ $CXXFLAGS Main.cpp \
-  src/nn/Sequential.cpp \
-  src/nn/layers/Linear.cpp \
-  src/nn/layers/ReLU.cpp \
-  src/nn/layers/Sigmoid.cpp \
-  src/nn/layers/Tanh.cpp \
-  src/nn/layers/Softmax.cpp \
-  src/nn/criteria/BinaryCrossEntropyLoss.cpp \
-  src/nn/optimizers/Optimizer.cpp \
-  src/nn/optimizers/SGD.cpp \
-  -o neuralcpp_example
-
-./neuralcpp_example
-```
-
-### Option B: MSVC (Developer Command Prompt)
-```bash
-set EIGEN_INC=C:\path\to\eigen
-set CXXFLAGS=/std:c++14 /O2 /I include /I %EIGEN_INC%
-
-cl %CXXFLAGS% Main.cpp ^
-  src\nn\Sequential.cpp ^
-  src\nn\layers\Linear.cpp ^
-  src\nn\layers\ReLU.cpp ^
-  src\nn\layers\Sigmoid.cpp ^
-  src\nn\layers\Tanh.cpp ^
-  src\nn\layers\Softmax.cpp ^
-  src\nn\criteria\BinaryCrossEntropyLoss.cpp ^
-  src\nn\optimizers\Optimizer.cpp ^
-  src\nn\optimizers\SGD.cpp ^
-  /Fe:neuralcpp_example.exe
-
-neuralcpp_example.exe
-```
-
-### Option C: Use in another CMake project
-This repo does not ship a CMakeLists.txt. To consume it from a CMake project, add this repository as a subdirectory (e.g., `external/NeuralCpp`) and add its headers to your include path, and its `src/*.cpp` files to your target. Also link Eigen.
-
-Minimal sketch:
-```cmake
-find_package(Eigen3 REQUIRED)
-add_executable(my_app main.cpp
-  external/NeuralCpp/src/nn/Sequential.cpp
-  external/NeuralCpp/src/nn/layers/Linear.cpp
-  external/NeuralCpp/src/nn/layers/ReLU.cpp
-  external/NeuralCpp/src/nn/layers/Sigmoid.cpp
-  external/NeuralCpp/src/nn/layers/Tanh.cpp
-  external/NeuralCpp/src/nn/layers/Softmax.cpp
-  external/NeuralCpp/src/nn/criteria/BinaryCrossEntropyLoss.cpp
-  external/NeuralCpp/src/nn/optimizers/Optimizer.cpp
-  external/NeuralCpp/src/nn/optimizers/SGD.cpp)
-
-target_include_directories(my_app PRIVATE external/NeuralCpp/include)
-target_link_libraries(my_app PRIVATE Eigen3::Eigen)
-```
-
 ## Usage
-A minimal end?to?end example (see `Main.cpp`) training a small MLP with BCE and SGD:
+A minimal end‑to‑end example (see `Main.cpp`) training a small MLP with BCE and SGD:
 ```cpp
 #include <iostream>
 #include <Eigen/Dense>

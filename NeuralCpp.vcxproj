@@ -153,8 +153,12 @@
     <ClInclude Include="include\nn\Sequential.h" />
     <ClInclude Include="include\Perceptron.h" />
     <ClInclude Include="include\nn\layers\Linear.h" />
+    <ClInclude Include="include\nn\optimizers\Optimizer.h" />
+    <ClInclude Include="include\nn\optimizers\SGD.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\nn\optimizers\SGD.cpp" />
+    <ClCompile Include="src\nn\optimizers\Optimizer.cpp" />
     <ClCompile Include="src\Gate.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="src\McCullochPittsUnit.cpp" />

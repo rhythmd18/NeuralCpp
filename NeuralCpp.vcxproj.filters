@@ -54,6 +54,12 @@
     <ClInclude Include="include\nn\criteria\BinaryCrossEntropyLoss.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\nn\optimizers\Optimizer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\nn\optimizers\SGD.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\McCullochPittsUnit.cpp">
@@ -87,6 +93,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\nn\layers\Tanh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nn\optimizers\Optimizer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nn\optimizers\SGD.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

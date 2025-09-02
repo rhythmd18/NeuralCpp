@@ -3,7 +3,7 @@
 
 Eigen::MatrixXd Sigmoid::operator()(const Eigen::MatrixXd& X)
 {
-	A = 1.0 / (1.0 + (-X.array()).exp());
+	A = 1.0 / (1.0 + (-1.0 * X.array()).exp());
 	return A;
 }
 

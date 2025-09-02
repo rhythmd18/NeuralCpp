@@ -7,8 +7,9 @@
 
 class Sequential
 {
-	std::vector<std::shared_ptr<Layer>> layers;
 public:
+	std::vector<std::shared_ptr<Layer>> layers;
+
 	template<typename... Layers>
 	Sequential(Layers... ls)
 	{

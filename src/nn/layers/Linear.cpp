@@ -13,6 +13,8 @@ Linear::Linear(int input_dims, int output_dims)
 		output_dims,
 		[&]() { return dist(gen) * std::sqrt(1.0 / input_dims); });
 	b = Eigen::RowVectorXd::Zero(output_dims);
+	V_dW = Eigen::MatrixXd::Zero(input_dims, output_dims);
+	V_db = Eigen::RowVectorXd::Zero(output_dims);
 }
 
 Eigen::MatrixXd Linear::operator()(const Eigen::MatrixXd& X_)

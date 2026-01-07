@@ -8,7 +8,7 @@ public:
 	SGD(Sequential& model, double lr = 0.01, double momentum_ = 0.0) :
 		Optimizer(model, lr), momentum(momentum_) {};
 
-	virtual ~SGD() = default;
+	~SGD() override = default;
 	void step() override;
 };
 
